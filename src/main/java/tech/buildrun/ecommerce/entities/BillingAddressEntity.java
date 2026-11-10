@@ -1,15 +1,20 @@
 package tech.buildrun.ecommerce.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_billing_address")
 public class BillingAddressEntity {
 
     @Id
-    @Column(name = "billing_address")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long billingAddress;
+    @Column(name = "billing_address_id")
+    private Long billingAddressId;
 
     @Column(name = "address")
     private String address;
@@ -20,18 +25,22 @@ public class BillingAddressEntity {
     @Column(name = "complement")
     private String complement;
 
-   // @OneToOne(mappedBy = "billingAddress")
-  //  private UserEntity user;
-
     public BillingAddressEntity() {
     }
 
-    public Long getBillingAddress() {
-        return billingAddress;
+    public BillingAddressEntity(Long billingAddressId, String address, String number, String complement) {
+        this.billingAddressId = billingAddressId;
+        this.address = address;
+        this.number = number;
+        this.complement = complement;
     }
 
-    public void setBillingAddress(Long billingAddress) {
-        this.billingAddress = billingAddress;
+    public Long getBillingAddressId() {
+        return billingAddressId;
+    }
+
+    public void setBillingAddressId(Long billingAddressId) {
+        this.billingAddressId = billingAddressId;
     }
 
     public String getAddress() {
@@ -57,12 +66,4 @@ public class BillingAddressEntity {
     public void setComplement(String complement) {
         this.complement = complement;
     }
-
-   // public UserEntity getUser() {
-  //      return user;
-  //  }
-
-  //  public void setUser(UserEntity user) {
-  //      this.user = user;
-  //  }
 }
